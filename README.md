@@ -1,3 +1,6 @@
+# Assignment 1: A* Algorithm
+### General Instruction
+
 1. Implement an optimal route finder program using A* algorithm.
 
     i. Find coordinates.txt and map.txt. Figure 1 is attached for your information.
