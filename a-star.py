@@ -71,7 +71,6 @@ def haversine_formula(start, end):
     radius = 3958.8 
 
     # should return a float
-    pass
 
 ###------------------------------------------------------###
 ## Actual A* algorithm, will find the optimal path to the destination city
@@ -81,6 +80,6 @@ city_coordinates = read_coordinates("coordinates.txt")
 city_distances = parse_map("map.txt")
 
 
-haversine_formula(starting_city, ending_city)
+haversine_formula(city_coordinates[starting_city], city_coordinates[ending_city])
 # print(read_coordinates(city_coordinates))
 # print(parse_map(city_distances))
