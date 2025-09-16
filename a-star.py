@@ -1,4 +1,5 @@
 import argparse
+import math
 from math import radians
 
 ###------------------------------------------------------###
@@ -54,32 +55,54 @@ def parse_map(file):
 
 ###------------------------------------------------------###
 ## Haversine formula to calculate straight line distance
-# Status: Not started
+# Status: Done
 
 def haversine_formula(start, end):
-
-    lat1, lon1 = start
-    lat2, lon2 = end
-
-    print(f"Degrees - {start}: ({lat1}, {lon1}), {end}: {lat2},{lon2}")
-
-    lat1, lon1, lat2, lon2 = map(radians, [lat1, lon1, lat2, lon2])
-
-    print(f"Radians - {start}: ({lat1}, {lon1}), {end}: {lat2},{lon2}")
 
     #radius of the earth (miles)
     radius = 3958.8 
 
-    # should return a float
+    lat1, lon1 = start
+    lat2, lon2 = end
+
+    lat1, lon1, lat2, lon2 = map(radians, [lat1, lon1, lat2, lon2])
+
+    latitude_distance = math.sin((lat2 - lat1)/2) ** 2
+    longitude_distance = math.sin((lon2 - lon1)/2) ** 2
+
+    x = math.sqrt(latitude_distance + math.cos(lat1) * math.cos(lat2) * longitude_distance)
+    y = math.asin(x)
+
+    distance = 2 * radius * y
+
+    return distance
 
 ###------------------------------------------------------###
 ## Actual A* algorithm, will find the optimal path to the destination city
 # Status: Not Started
 
+def a_search_algorithm(start, end):
+
+    open_list = []
+    closed_list = []
+
+    starting_node = start
+    ending_node = end
+
+    open_list.append(starting_node)
+
+    # loop through a non empty list
+    while len(open_list) > 0:
+        current_node = open_list[0]
+        index = 0
+        
+
+    pass
+
 city_coordinates = read_coordinates("coordinates.txt")
 city_distances = parse_map("map.txt")
 
 
-haversine_formula(city_coordinates[starting_city], city_coordinates[ending_city])
+print(haversine_formula(city_coordinates[starting_city], city_coordinates[ending_city]))
 # print(read_coordinates(city_coordinates))
 # print(parse_map(city_distances))
